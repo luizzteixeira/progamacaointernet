@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horário de aula</title>
+</head>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    
+    table{
+        width: 50%;
+        border-collapse:collapse;
+        border: 1px solid black;
+        margin: 0 auto;
+    }
+    th, td {
+        
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        h2{
+            margin: 0 auto;
+        }
+</style>
+<body>
+    <h2>Horário e Disciplinas</h2>
+    <table>
+        <tr>
+        
+<th rowspan="3"><img src="data:image/png;base64,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" alt="Unipar"width="100"></th>
+<tr>
+<th colspan="4"> UNIVERSIDADE PARANAENSE - UNIDADE CVEL</th>
+</tr>
+        <tr>
+            
+            <th colspan="4">RA:60009297    NOME:Luiz Finkler Turma:1º Periodo 2025</th>
+        </tr>
+        <tr>
+            <th>DISCIPLINA</th>
+            <th>1 BIM</th>
+            <th>2 BIM</th>
+            <th>3 BIM</th>
+            <th>4 BIM</th>
+        </tr>
+        <tr>
+            <th>Direito Digital</th>
+            <th>5
+            <th>5</th>
+            <th>5</th>
+            <th>5</th>
+        </tr>
+        <tr>
+            <th>Pensamento Computacional</th>
+            <th>5</th>
+            <th>5</th>
+            <th>5</th>
+            <th>5</th>
+        </tr>
+        <tr>
+            <th>Cybersegurança</th>
+            <th>5</th>
+            <th>5</th>
+            <th>5</th>
+            <th>5</th>
+
+        </tr>
+        <tr>
+            <th>Linguagem e Interação</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+            </tr>
+            <tr>
+                <th>Extensão I</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+            </tr>
+            <tr>
+                <th>Ambientaçao Tech</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+            </tr>
+            <tr>
+                <th>Desenvolvimento para Internet</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+                <th>5</th>
+
+            </tr>
+    </table>
+    
+</body>
+</html>
