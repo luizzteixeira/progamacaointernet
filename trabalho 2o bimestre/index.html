@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalho 2o bimestre</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f2f2f2;
+    }
+    section {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .resultado {
+      margin-top: 10px;
+      font-weight: bold;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h2>1. Verificador de Triângulo</h2>
+    <label>Lado X:</label>
+    <input type="number" id="ladoX">
+    <label>Lado Y:</label>
+    <input type="number" id="ladoY">
+    <label>Lado Z:</label>
+    <input type="number" id="ladoZ">
+    <button onclick="verificarTriangulo()">Verificar</button>
+    <div class="resultado" id="resultadoTriangulo"></div>
+  </section>
+
+  <section>
+    <h2>2. Calculadora de IMC</h2>
+    <label>Peso (kg):</label>
+    <input type="number" id="peso">
+    <label>Altura (m):</label>
+    <input type="number" step="0.01" id="altura">
+    <button onclick="calcularIMC()">Calcular</button>
+    <div class="resultado" id="resultadoIMC"></div>
+  </section>
+
+  <section>
+    <h2>3. Calculadora de Impostos (DETRAN)</h2>
+    <label>Ano do carro:</label>
+    <input type="number" id="anoCarro">
+    <label>Valor de tabela (R$):</label>
+    <input type="number" step="0.01" id="valorCarro">
+    <button onclick="calcularImposto()">Calcular Imposto</button>
+    <div class="resultado" id="resultadoImposto"></div>
+  </section>
+
+  <section>
+    <h2>4. Calculadora de Salário</h2>
+    <label>Salário atual (R$):</label>
+    <input type="number" id="salario">
+    <label>Código do cargo:</label>
+    <input type="number" id="codigoCargo">
+    <button onclick="calcularSalario()">Calcular Novo Salário</button>
+    <div class="resultado" id="resultadoSalario"></div>
+  </section>
+
+  <section>
+    <h2>5. Cálculo de Lanche</h2>
+    <label>Código do Produto:</label>
+    <select id="codigoLanche">
+      <option value="1">1 - Cachorro Quente (R$11,00)</option>
+      <option value="2">2 - Bauru (R$8,50)</option>
+      <option value="3">3 - Hamburguer (R$9,00)</option>
+      <option value="4">4 - Refrigerante (R$4,50)</option>
+    </select>
+    <label>Quantidade:</label>
+    <input type="number" id="quantidadeLanche">
+    <button onclick="calcularLanche()">Calcular Total</button>
+    <div class="resultado" id="resultadoLanche"></div>
+  </section>
+
+  <section>
+    <h2>6. Sistema de Vendas</h2>
+    <label>Preço do produto (R$):</label>
+    <input type="number" id="precoProduto">
+    <label>Condição de pagamento:</label>
+    <select id="condicaoPagamento">
+      <option value="a">A - À vista dinheiro/cheque (10% desc)</option>
+      <option value="b">B - À vista cartão (15% desc)</option>
+      <option value="c">C - 2x sem juros</option>
+      <option value="d">D - 2x com 10% juros</option>
+    </select>
+    <button onclick="calcularVenda()">Calcular</button>
+    <div class="resultado" id="resultadoVenda"></div>
+  </section>
+
+  <section>
+    <h2>7. Sistema de Pagamento - Professores</h2>
+    <label>Nível do Professor:</label>
+    <select id="nivelProfessor">
+      <option value="1">Nível 1 (R$12,00)</option>
+      <option value="2">Nível 2 (R$17,00)</option>
+      <option value="3">Nível 3 (R$25,00)</option>
+    </select>
+    <label>Horas/aula semanais:</label>
+    <input type="number" id="horasAula">
+    <button onclick="calcularSalarioProfessor()">Calcular Salário</button>
+    <div class="resultado" id="resultadoProfessor"></div>
+  </section>
+
+  <script>
+    function verificarTriangulo() {
+      const x = +document.getElementById('ladoX').value;
+      const y = +document.getElementById('ladoY').value;
+      const z = +document.getElementById('ladoZ').value;
+      let r = "";
+      if (x < y + z && y < x + z && z < x + y) {
+        if (x === y && y === z) r = "Equilátero";
+        else if (x === y || y === z || x === z) r = "Isósceles";
+        else r = "Escaleno";
+      } else {
+        r = "Não forma triângulo";
+      }
+      document.getElementById('resultadoTriangulo').innerText = r;
+    }
+
+    function calcularIMC() {
+      const peso = +document.getElementById('peso').value;
+      const altura = +document.getElementById('altura').value;
+      const imc = peso / (altura * altura);
+      let r = "";
+      if (imc < 18.5) r = "Abaixo do peso";
+      else if (imc < 25) r = "Peso normal";
+      el
